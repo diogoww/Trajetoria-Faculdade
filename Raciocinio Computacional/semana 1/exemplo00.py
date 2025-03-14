@@ -1,7 +1,7 @@
-# Lista de times
+
 times = ['Astralis', 'Na`Vi', 'G2', 'Vitality', 'Liquid', 'FURIA']
 
-# Lista de resultados [time1, time2, resultado_time1, resultado_time2]
+
 resultados = [
     ['Astralis', 'G2', 16, 10],
     ['Na`Vi', 'Vitality', 16, 8],
@@ -37,7 +37,7 @@ for jogo in resultados:
 
 # Classificar os times por pontos e exibir a tabela
 classificacao = sorted(pontuacao.items(), key=lambda x: (-x[1]['pontos'], -x[1]['vitorias']))
-print('Tabela de classificação:')
-print('{:<15} {:<10} {:<10} {:<10}'.format('Time', 'Pontos', 'Vitórias', 'Jogos'))
+print('Tabela de classificacao:')
+print('{:<15} {:<10} {:<10} {:<10}'.format('Time', 'Pontos', 'Vitorias', 'Jogos'))
 for time, pontos in classificacao:
     print('{:<15} {:<10} {:<10} {:<10}'.format(time, pontos['pontos'], pontos['vitorias'], pontos['jogos']))
