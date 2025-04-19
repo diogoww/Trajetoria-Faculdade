@@ -1,3 +1,7 @@
+#NOME: Diogo José Varaschin de Oliveira
+#CURSO: ADS
+#FACULDADE: PUCPR
+
 nomesEstudantes = []
 while True:
     print("---- MENU PRINCIPAL ----")
