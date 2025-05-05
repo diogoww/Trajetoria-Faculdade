@@ -1,6 +1,10 @@
 #NOME: Diogo José Varaschin de Oliveira
 #CURSO: ADS
 #FACULDADE: PUCPR
+
+import json
+import os
+
 def menuPrincipal():
     print("---- MENU PRINCIPAL ----")
     print("(1) Gerenciar Estudantes.")
@@ -98,7 +102,7 @@ while True:
                 else:
                     print("Escolha uma opção VÁLIDA")
                 print("\n")
-                
+
     elif opcao >= 2 and opcao <=5:
           print("EM DESENVOLVIMENTO...")
           print("Voltando ao menu principal...")
