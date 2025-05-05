@@ -518,11 +518,27 @@ while True:
                 print("Escolha uma opção VÁLIDA")
             print("\n")
 
+    elif opcao == 3:
+        while True:
+            opcaoSec = menuOperacoes(opcao)
+            print(f"Você escolheu a opção {opcaoSec}.")
 
-    elif opcao >= 2 and opcao <=5:
-          print("EM DESENVOLVIMENTO...")
-          print("Voltando ao menu principal...")
-          print("\n")
+            if opcaoSec == 1:
+                incluirDisciplina(disciplinas)
+            elif opcaoSec == 2:
+                listarDisciplinas(disciplinas)
+            elif opcaoSec == 3:
+                atualizarDisciplina(disciplinas)
+            elif opcaoSec == 4:
+                excluirDisciplina(disciplinas)
+            elif opcaoSec == 0:
+                print("\n")
+                print("Voltando ao menu principal...")
+                break
+            else:
+                print("Escolha uma opção VÁLIDA")
+            print("\n")
+
     elif opcao == 0:
                 print("\n")
                 print("Saindo...")
