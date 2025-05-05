@@ -5,6 +5,18 @@
 import json
 import os
 
+def salvarEstudantes(nomesEstudantes):
+     with open('estudantes.json', 'w', encoding='utf-8') as f:
+          json.dump(nomesEstudantes, f, ensure_ascii=False, indent=4)
+
+def carregarEstudantes():
+    if os.path.exists('estudantes.json'):
+          with open('estudantes.json', 'r', encoding='utf-8') as f:
+               return json.load(f)
+    else:
+         return[]
+
+
 def menuPrincipal():
     print("---- MENU PRINCIPAL ----")
     print("(1) Gerenciar Estudantes.")
@@ -34,10 +46,14 @@ def incluirEstudante(nomesEstudantes):
     cpf = input("digite o cpf do estudante: ")
 
     estudante = {"codigo": codigo, "nome": nome, "cpf": cpf}
+
+    nomesEstudantes = carregarEstudantes()
     nomesEstudantes.append(estudante)
+    salvarEstudantes(nomesEstudantes)
 
 def listarEstudantes(nomesEstudantes):
     print("OPÇÃO 2 - LISTAR ESTUDANTES")
+    nomesEstudantes = carregarEstudantes()
     if not nomesEstudantes:
             print("Não há estudantes cadastrados")
     else:
@@ -46,6 +62,7 @@ def listarEstudantes(nomesEstudantes):
 
 def atualizarEstudante(nomesEstudantes):
     print("OPÇÃO 3 - ATUALIZAR ESTUDANTE")
+    nomesEstudantes = carregarEstudantes()
     editar = int(input("digite o código do estudante que deseja atualizar: "))
     estEncontrado = False
     for estudante in nomesEstudantes:
@@ -61,11 +78,14 @@ def atualizarEstudante(nomesEstudantes):
                 print("atualizado com sucesso!")
                 estEncontrado = True
                 break
-            if not estEncontrado:
-                print("estudante nao encontrado!")
+    if estEncontrado:
+        salvarEstudantes(nomesEstudantes)
+    else:
+        print("estudante nao encontrado!")
 
 def excluirEstudante(nomesEstudantes):
     print("OPÇÃO 4 - EXCLUIR ESTUDANTE")
+    nomesEstudantes = carregarEstudantes()
     excluir = int(input("digite o código do estudante que deseja excluir: "))
     estEncontrado = False
 
@@ -75,10 +95,13 @@ def excluirEstudante(nomesEstudantes):
                 print("estudante removido com sucesso!")
                 estEncontrado = True
                 break
-    if not estEncontrado:
+    if estEncontrado:
+        salvarEstudantes(nomesEstudantes)
+    else:
         print("estudante nao encontrado")
 
-nomesEstudantes = []
+nomesEstudantes = carregarEstudantes()
+
 while True:
     opcao = menuPrincipal()
 
