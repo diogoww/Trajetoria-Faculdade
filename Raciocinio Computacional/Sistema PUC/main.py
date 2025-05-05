@@ -466,8 +466,12 @@ def excluirMatricula(matriculas):
         salvarMatriculas(matriculas)
     else:
         print("Matrícula não encontrada")
-
+        
 nomesEstudantes = carregarEstudantes()
+professores = carregarProfessores()
+disciplinas = carregarDisciplinas()
+turmas = carregarTurmas()
+matriculas = carregarMatriculas()
 
 while True:
     opcao = menuPrincipal()
@@ -492,6 +496,28 @@ while True:
                 else:
                     print("Escolha uma opção VÁLIDA")
                 print("\n")
+
+    elif opcao == 2:
+        while True:
+            opcaoSec = menuOperacoes(opcao)
+            print(f"Você escolheu a opção {opcaoSec}.")
+
+            if opcaoSec == 1:
+                incluirProfessor(professores)
+            elif opcaoSec == 2:
+                listarProfessores(professores)
+            elif opcaoSec == 3:
+                atualizarProfessor(professores)
+            elif opcaoSec == 4:
+                excluirProfessor(professores)
+            elif opcaoSec == 0:
+                print("\n")
+                print("Voltando ao menu principal...")
+                break
+            else:
+                print("Escolha uma opção VÁLIDA")
+            print("\n")
+
 
     elif opcao >= 2 and opcao <=5:
           print("EM DESENVOLVIMENTO...")
