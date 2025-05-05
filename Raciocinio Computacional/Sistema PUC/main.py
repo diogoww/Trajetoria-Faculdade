@@ -559,7 +559,7 @@ while True:
             else:
                 print("Escolha uma opção VÁLIDA")
             print("\n")
-            
+
     elif opcao == 5:
         while True:
             opcaoSec = menuOperacoes(opcao)
