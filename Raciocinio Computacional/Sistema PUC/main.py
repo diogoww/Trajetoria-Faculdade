@@ -276,7 +276,7 @@ def excluirDisciplina(disciplinas):
     else:
         print("Disciplina não encontrada")
 
-#funcionalidade p/ opcao gerenciar turmas
+#funcionalidade p/ opcaoo gerenciar turmas
 def incluirTurma(turmas):
     print("OPÇÃO 1 - INCLUIR TURMA")
     codigo = int(input("Digite o código da turma: "))
@@ -371,6 +371,101 @@ def excluirTurma(turmas):
         salvarTurmas(turmas)
     else:
         print("Turma não encontrada")
+
+#funcionalidade p/ opcao gferenciar matricuals
+def incluirMatricula(matriculas):
+    print("OPÇÃO 1 - INCLUIR MATRÍCULA")
+    cod_turma = int(input("Digite o código da turma: "))
+    cod_estudante = int(input("Digite o código do estudante: "))
+
+    turmas = carregarTurmas()
+    turma_existe = any(turma['codigo'] == cod_turma for turma in turmas)
+    
+    estudantes = carregarEstudantes()
+    estudante_existe = any(est['codigo'] == cod_estudante for est in estudantes)
+    
+    if not turma_existe:
+        print("Erro: Turma não encontrada!")
+        return
+    if not estudante_existe:
+        print("Erro: Estudante não encontrado!")
+        return
+
+    matricula = {"cod_turma": cod_turma, "cod_estudante": cod_estudante}
+
+    matriculas = carregarMatriculas()
+    if any(m['cod_turma'] == cod_turma and m['cod_estudante'] == cod_estudante for m in matriculas):
+        print("Erro: Esta matrícula já existe!")
+        return
+    
+    matriculas.append(matricula)
+    salvarMatriculas(matriculas)
+    print("Matrícula cadastrada com sucesso!")
+
+def listarMatriculas(matriculas):
+    print("OPÇÃO 2 - LISTAR MATRÍCULAS")
+    matriculas = carregarMatriculas()
+    if not matriculas:
+        print("Não há matrículas cadastradas")
+    else:
+        for matricula in matriculas:
+            print(f"Cód. Turma: {matricula['cod_turma']}, Cód. Estudante: {matricula['cod_estudante']}")
+
+def atualizarMatricula(matriculas):
+    print("OPÇÃO 3 - ATUALIZAR MATRÍCULA")
+    matriculas = carregarMatriculas()
+    cod_turma = int(input("Digite o código da turma da matrícula que deseja atualizar: "))
+    cod_estudante = int(input("Digite o código do estudante da matrícula que deseja atualizar: "))
+    matriculaEncontrada = False
+    
+    for matricula in matriculas:
+        if matricula["cod_turma"] == cod_turma and matricula["cod_estudante"] == cod_estudante:
+            novoCodTurma = int(input("Digite o novo código da turma: "))
+            novoCodEst = int(input("Digite o novo código do estudante: "))
+
+            turmas = carregarTurmas()
+            turma_existe = any(turma['codigo'] == novoCodTurma for turma in turmas)
+            
+            estudantes = carregarEstudantes()
+            estudante_existe = any(est['codigo'] == novoCodEst for est in estudantes)
+            
+            if not turma_existe:
+                print("Erro: Turma não encontrada!")
+                return
+            if not estudante_existe:
+                print("Erro: Estudante não encontrado!")
+                return
+
+            matricula["cod_turma"] = novoCodTurma
+            matricula["cod_estudante"] = novoCodEst
+
+            print("Matrícula atualizada com sucesso!")
+            matriculaEncontrada = True
+            break
+    
+    if matriculaEncontrada:
+        salvarMatriculas(matriculas)
+    else:
+        print("Matrícula não encontrada!")
+
+def excluirMatricula(matriculas):
+    print("OPÇÃO 4 - EXCLUIR MATRÍCULA")
+    matriculas = carregarMatriculas()
+    cod_turma = int(input("Digite o código da turma da matrícula que deseja excluir: "))
+    cod_estudante = int(input("Digite o código do estudante da matrícula que deseja excluir: "))
+    matriculaEncontrada = False
+
+    for matricula in matriculas:
+        if matricula["cod_turma"] == cod_turma and matricula["cod_estudante"] == cod_estudante:
+            matriculas.remove(matricula)
+            print("Matrícula removida com sucesso!")
+            matriculaEncontrada = True
+            break
+    
+    if matriculaEncontrada:
+        salvarMatriculas(matriculas)
+    else:
+        print("Matrícula não encontrada")
 
 nomesEstudantes = carregarEstudantes()
 
