@@ -149,7 +149,7 @@ def excluirEstudante(nomesEstudantes):
     else:
         print("estudante nao encontrado")
 
-#funcionalidades p/ profs
+#funcionalidades p/ opção profs
 def incluirProfessor(professores):
     print("OPÇÃO 1 - INCLUIR PROFESSOR")
     codigo = int(input("Digite o código do professor: "))
@@ -213,6 +213,69 @@ def excluirProfessor(professores):
         salvarProfessores(professores)
     else:
         print("Professor não encontrado")
+
+#funcionalidades p/ opcao disciplinas
+def incluirDisciplina(disciplinas):
+    print("OPÇÃO 1 - INCLUIR DISCIPLINA")
+    codigo = int(input("Digite o código da disciplina: "))
+    nome = input("Digite o nome da disciplina: ")
+
+    disciplina = {"codigo": codigo, "nome": nome}
+
+    disciplinas = carregarDisciplinas()
+    disciplinas.append(disciplina)
+    salvarDisciplinas(disciplinas)
+
+def listarDisciplinas(disciplinas):
+    print("OPÇÃO 2 - LISTAR DISCIPLINAS")
+    disciplinas = carregarDisciplinas()
+    if not disciplinas:
+        print("Não há disciplinas cadastradas")
+    else:
+        for disciplina in disciplinas:
+            print(f"Código: {disciplina['codigo']}, Nome: {disciplina['nome']}")
+
+def atualizarDisciplina(disciplinas):
+    print("OPÇÃO 3 - ATUALIZAR DISCIPLINA")
+    disciplinas = carregarDisciplinas()
+    editar = int(input("Digite o código da disciplina que deseja atualizar: "))
+    discEncontrada = False
+    
+    for disciplina in disciplinas:
+        if disciplina["codigo"] == editar:
+            novoCodigo = int(input("Digite um novo código: "))
+            novoNome = input("Digite o novo nome: ")
+
+            disciplina["codigo"] = novoCodigo
+            disciplina["nome"] = novoNome
+
+            print("Disciplina atualizada com sucesso!")
+            discEncontrada = True
+            break
+    
+    if discEncontrada:
+        salvarDisciplinas(disciplinas)
+    else:
+        print("Disciplina não encontrada!")
+
+def excluirDisciplina(disciplinas):
+    print("OPÇÃO 4 - EXCLUIR DISCIPLINA")
+    disciplinas = carregarDisciplinas()
+    excluir = int(input("Digite o código da disciplina que deseja excluir: "))
+    discEncontrada = False
+
+    for disciplina in disciplinas:
+        if disciplina["codigo"] == excluir:
+            disciplinas.remove(disciplina)
+            print("Disciplina removida com sucesso!")
+            discEncontrada = True
+            break
+    
+    if discEncontrada:
+        salvarDisciplinas(disciplinas)
+    else:
+        print("Disciplina não encontrada")
+
 
 nomesEstudantes = carregarEstudantes()
 
