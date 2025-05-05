@@ -5,6 +5,7 @@
 import json
 import os
 
+# json p/ os estudantes
 def salvarEstudantes(nomesEstudantes):
      with open('estudantes.json', 'w', encoding='utf-8') as f:
           json.dump(nomesEstudantes, f, ensure_ascii=False, indent=4)
@@ -15,7 +16,54 @@ def carregarEstudantes():
                return json.load(f)
     else:
          return[]
+    
+#json p/ os profs
+def salvarProfessores(professores):
+    with open('professores.json', 'w', encoding='utf-8') as f:
+        json.dump(professores, f, ensure_ascii=False, indent=4)
 
+def carregarProfessores():
+    if os.path.exists('professores.json'):
+        with open('professores.json', 'r', encoding='utf-8') as f:
+            return json.load(f)
+    else:
+        return []
+
+#json p/ as disciplinas
+def salvarDisciplinas(disciplinas):
+    with open('disciplinas.json', 'w', encoding='utf-8') as f:
+        json.dump(disciplinas, f, ensure_ascii=False, indent=4)
+
+def carregarDisciplinas():
+    if os.path.exists('disciplinas.json'):
+        with open('disciplinas.json', 'r', encoding='utf-8') as f:
+            return json.load(f)
+    else:
+        return []
+
+#json p/ as turmas
+def salvarTurmas(turmas):
+    with open('turmas.json', 'w', encoding='utf-8') as f:
+        json.dump(turmas, f, ensure_ascii=False, indent=4)
+
+def carregarTurmas():
+    if os.path.exists('turmas.json'):
+        with open('turmas.json', 'r', encoding='utf-8') as f:
+            return json.load(f)
+    else:
+        return []
+    
+#json p/ as matriculas
+def salvarMatriculas(matriculas):
+    with open('matriculas.json', 'w', encoding='utf-8') as f:
+        json.dump(matriculas, f, ensure_ascii=False, indent=4)
+
+def carregarMatriculas():
+    if os.path.exists('matriculas.json'):
+        with open('matriculas.json', 'r', encoding='utf-8') as f:
+            return json.load(f)
+    else:
+        return []
 
 def menuPrincipal():
     print("---- MENU PRINCIPAL ----")
