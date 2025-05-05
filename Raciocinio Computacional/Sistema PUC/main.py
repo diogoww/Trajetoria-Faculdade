@@ -87,6 +87,7 @@ def menuOperacoes(opcao):
     print("(0) Voltar ao Menu Principal.")
     return int(input("Informe a opção desejada: "))
 
+#funcionalidades p/ estudantes
 def incluirEstudante(nomesEstudantes):
     print("OPÇÃO 1 - INCLUIR ESTUDANTES")
     codigo = int(input("digite o codigo do estudante: "))
@@ -147,6 +148,71 @@ def excluirEstudante(nomesEstudantes):
         salvarEstudantes(nomesEstudantes)
     else:
         print("estudante nao encontrado")
+
+#funcionalidades p/ profs
+def incluirProfessor(professores):
+    print("OPÇÃO 1 - INCLUIR PROFESSOR")
+    codigo = int(input("Digite o código do professor: "))
+    nome = input("Digite o nome do professor: ")
+    cpf = input("Digite o CPF do professor: ")
+
+    professor = {"codigo": codigo, "nome": nome, "cpf": cpf}
+
+    professores = carregarProfessores()
+    professores.append(professor)
+    salvarProfessores(professores)
+
+def listarProfessores(professores):
+    print("OPÇÃO 2 - LISTAR PROFESSORES")
+    professores = carregarProfessores()
+    if not professores:
+        print("Não há professores cadastrados")
+    else:
+        for professor in professores:
+            print(f"Código: {professor['codigo']}, Nome: {professor['nome']}, CPF: {professor['cpf']}")
+
+def atualizarProfessor(professores):
+    print("OPÇÃO 3 - ATUALIZAR PROFESSOR")
+    professores = carregarProfessores()
+    editar = int(input("Digite o código do professor que deseja atualizar: "))
+    profEncontrado = False
+    
+    for professor in professores:
+        if professor["codigo"] == editar:
+            novoCodigo = int(input("Digite um novo código: "))
+            novoNome = input("Digite o novo nome: ")
+            novoCpf = input("Digite o novo CPF: ")
+
+            professor["codigo"] = novoCodigo
+            professor["nome"] = novoNome
+            professor["cpf"] = novoCpf
+
+            print("Professor atualizado com sucesso!")
+            profEncontrado = True
+            break
+    
+    if profEncontrado:
+        salvarProfessores(professores)
+    else:
+        print("Professor não encontrado!")
+
+def excluirProfessor(professores):
+    print("OPÇÃO 4 - EXCLUIR PROFESSOR")
+    professores = carregarProfessores()
+    excluir = int(input("Digite o código do professor que deseja excluir: "))
+    profEncontrado = False
+
+    for professor in professores:
+        if professor["codigo"] == excluir:
+            professores.remove(professor)
+            print("Professor removido com sucesso!")
+            profEncontrado = True
+            break
+    
+    if profEncontrado:
+        salvarProfessores(professores)
+    else:
+        print("Professor não encontrado")
 
 nomesEstudantes = carregarEstudantes()
 
