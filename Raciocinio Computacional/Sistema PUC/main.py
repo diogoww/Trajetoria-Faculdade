@@ -87,7 +87,7 @@ def menuOperacoes(opcao):
     print("(0) Voltar ao Menu Principal.")
     return int(input("Informe a opção desejada: "))
 
-#funcionalidades p/ estudantes
+#funcionalidades p/ opcao gerenciar estudantes
 def incluirEstudante(nomesEstudantes):
     print("OPÇÃO 1 - INCLUIR ESTUDANTES")
     codigo = int(input("digite o codigo do estudante: "))
@@ -149,7 +149,7 @@ def excluirEstudante(nomesEstudantes):
     else:
         print("estudante nao encontrado")
 
-#funcionalidades p/ opção profs
+#funcionalidades p/ opção gerenciar profs
 def incluirProfessor(professores):
     print("OPÇÃO 1 - INCLUIR PROFESSOR")
     codigo = int(input("Digite o código do professor: "))
@@ -179,7 +179,7 @@ def atualizarProfessor(professores):
     
     for professor in professores:
         if professor["codigo"] == editar:
-            novoCodigo = int(input("Digite um novo código: "))
+            novoCodigo = int(input("Digite um novo codigo: "))
             novoNome = input("Digite o novo nome: ")
             novoCpf = input("Digite o novo CPF: ")
 
@@ -199,7 +199,7 @@ def atualizarProfessor(professores):
 def excluirProfessor(professores):
     print("OPÇÃO 4 - EXCLUIR PROFESSOR")
     professores = carregarProfessores()
-    excluir = int(input("Digite o código do professor que deseja excluir: "))
+    excluir = int(input("Digite o codigo do professor que deseja excluir: "))
     profEncontrado = False
 
     for professor in professores:
@@ -214,10 +214,10 @@ def excluirProfessor(professores):
     else:
         print("Professor não encontrado")
 
-#funcionalidades p/ opcao disciplinas
+#funcionalidades p/ opcao gerenciar disciplinas
 def incluirDisciplina(disciplinas):
     print("OPÇÃO 1 - INCLUIR DISCIPLINA")
-    codigo = int(input("Digite o código da disciplina: "))
+    codigo = int(input("Digite o codigo da disciplina: "))
     nome = input("Digite o nome da disciplina: ")
 
     disciplina = {"codigo": codigo, "nome": nome}
@@ -276,6 +276,101 @@ def excluirDisciplina(disciplinas):
     else:
         print("Disciplina não encontrada")
 
+#funcionalidade p/ opcao gerenciar turmas
+def incluirTurma(turmas):
+    print("OPÇÃO 1 - INCLUIR TURMA")
+    codigo = int(input("Digite o código da turma: "))
+    cod_professor = int(input("Digite o código do professor: "))
+    cod_disciplina = int(input("Digite o código da disciplina: "))
+
+    professores = carregarProfessores()
+    prof_existe = any(prof['codigo'] == cod_professor for prof in professores)
+    
+    disciplinas = carregarDisciplinas()
+    disc_existe = any(disc['codigo'] == cod_disciplina for disc in disciplinas)
+    
+    if not prof_existe:
+        print("Erro: Professor não encontrado!")
+        return
+    if not disc_existe:
+        print("Erro: Disciplina não encontrada!")
+        return
+
+    turma = {"codigo": codigo, "cod_professor": cod_professor, "cod_disciplina": cod_disciplina}
+
+    turmas = carregarTurmas()
+    if any(t['codigo'] == codigo for t in turmas):
+        print("Erro: Já existe uma turma com este código!")
+        return
+    
+    turmas.append(turma)
+    salvarTurmas(turmas)
+    print("Turma cadastrada com sucesso!")
+
+def listarTurmas(turmas):
+    print("OPÇÃO 2 - LISTAR TURMAS")
+    turmas = carregarTurmas()
+    if not turmas:
+        print("Não há turmas cadastradas")
+    else:
+        for turma in turmas:
+            print(f"Código: {turma['codigo']}, Cód. Professor: {turma['cod_professor']}, Cód. Disciplina: {turma['cod_disciplina']}")
+
+def atualizarTurma(turmas):
+    print("OPÇÃO 3 - ATUALIZAR TURMA")
+    turmas = carregarTurmas()
+    editar = int(input("Digite o código da turma que deseja atualizar: "))
+    turmaEncontrada = False
+    
+    for turma in turmas:
+        if turma["codigo"] == editar:
+            novoCodigo = int(input("Digite um novo código: "))
+            novoCodProf = int(input("Digite o novo código do professor: "))
+            novoCodDisc = int(input("Digite o novo código da disciplina: "))
+
+            professores = carregarProfessores()
+            prof_existe = any(prof['codigo'] == novoCodProf for prof in professores)
+            
+            disciplinas = carregarDisciplinas()
+            disc_existe = any(disc['codigo'] == novoCodDisc for disc in disciplinas)
+            
+            if not prof_existe:
+                print("Erro: Professor não encontrado!")
+                return
+            if not disc_existe:
+                print("Erro: Disciplina não encontrada!")
+                return
+
+            turma["codigo"] = novoCodigo
+            turma["cod_professor"] = novoCodProf
+            turma["cod_disciplina"] = novoCodDisc
+
+            print("Turma atualizada com sucesso!")
+            turmaEncontrada = True
+            break
+    
+    if turmaEncontrada:
+        salvarTurmas(turmas)
+    else:
+        print("Turma não encontrada!")
+
+def excluirTurma(turmas):
+    print("OPÇÃO 4 - EXCLUIR TURMA")
+    turmas = carregarTurmas()
+    excluir = int(input("Digite o código da turma que deseja excluir: "))
+    turmaEncontrada = False
+
+    for turma in turmas:
+        if turma["codigo"] == excluir:
+            turmas.remove(turma)
+            print("Turma removida com sucesso!")
+            turmaEncontrada = True
+            break
+    
+    if turmaEncontrada:
+        salvarTurmas(turmas)
+    else:
+        print("Turma não encontrada")
 
 nomesEstudantes = carregarEstudantes()
 
