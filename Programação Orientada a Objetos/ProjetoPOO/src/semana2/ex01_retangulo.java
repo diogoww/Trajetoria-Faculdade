@@ -1,10 +1,10 @@
 package semana2;
 
-public class retangulo {
+public class ex01_retangulo {
     float altura;
     float largura;
 
-    public retangulo(float alt, float larg) {
+    public ex01_retangulo(float alt, float larg) {
         altura = alt;
         largura = larg;
     }
@@ -24,12 +24,12 @@ public class retangulo {
     public static void main(String[] args) {
         System.out.println("Mundo dos retângulos");
 
-        retangulo retg1;
-        retg1 = new retangulo(10, 20);
+        ex01_retangulo retg1;
+        retg1 = new ex01_retangulo(10, 20);
         retg1.imprimirDados();
 
-        retangulo retg2;
-        retg2 = new retangulo(5, 15);
+        ex01_retangulo retg2;
+        retg2 = new ex01_retangulo(5, 15);
         retg2.imprimirDados();
     }
 }
