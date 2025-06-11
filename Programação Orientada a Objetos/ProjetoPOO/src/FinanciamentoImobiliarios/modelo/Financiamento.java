@@ -1,4 +1,4 @@
-package FinanciamentoImobiliarios;
+package FinanciamentoImobiliarios.modelo;
 
 public class Financiamento {
 

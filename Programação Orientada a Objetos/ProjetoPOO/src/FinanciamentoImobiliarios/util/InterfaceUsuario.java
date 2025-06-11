@@ -1,4 +1,4 @@
-package FinanciamentoImobiliarios;
+package FinanciamentoImobiliarios.util;
 
 import java.util.Scanner;
 

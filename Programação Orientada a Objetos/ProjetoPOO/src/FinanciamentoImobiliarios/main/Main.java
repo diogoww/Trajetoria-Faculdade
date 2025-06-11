@@ -1,4 +1,6 @@
-package FinanciamentoImobiliarios;
+package FinanciamentoImobiliarios.main;
+
+import FinanciamentoImobiliarios.util.InterfaceUsuario;
 
 public class Main {
 
@@ -9,7 +11,7 @@ public class Main {
         int prazoDigitado = interfaceUsuario.prazoFinanciamento();
         double valorImovelDigitado = interfaceUsuario.valorImovel();
         double taxaDigitada = interfaceUsuario.taxaJuros();
-        
+
         interfaceUsuario.fecharScanner();
     }
 }
