@@ -24,4 +24,27 @@ public class Financiamento {
         int meses = prazoFinanciamento*12;
         return pagamentoMensal*meses;
     }
+
+    public double getValorImovel() {
+        return valorImovel;
+    }
+
+    public double getTaxaJurosAnual() {
+        return taxaJurosAnual;
+    }
+
+    public int getPrazoFinanciamento() {
+        return prazoFinanciamento;
+    }
+
+    public void exibirDados(){
+        System.out.println("\n -- detalhes do financiamento --");
+        System.out.printf("valor do imovel: R$ %.2f%n", getValorImovel());
+        System.out.printf("prazo do financiamento: %d anos%n ", getPrazoFinanciamento());
+        System.out.printf("taxas de juros anual: R$ %.2f%%%n", getTaxaJurosAnual());
+        System.out.printf("pagamento mensal estimado: R4 %.2f%n", calcPagamentoMensal());
+        System.out.printf("valor total do financiamento: R$ %.2f%n", calcPagamentoTotal());
+        System.out.println("-------------");
+    }
+
 }
