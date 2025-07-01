@@ -1,6 +1,7 @@
 package FinanciamentoImobiliarios;
 
 import FinanciamentoImobiliarios.modelo.Financiamento;
+import FinanciamentoImobiliarios.excecoes.AumentoMaiorDoQueJurosException;
 
 public class Casa extends Financiamento {
     private static final double VALOR_SEGURO_FIXO = 80.0;
@@ -10,13 +11,21 @@ public class Casa extends Financiamento {
     }
 
     @Override
-    public double calcPagamentoMensal() {
-        return super.calcPagamentoMensal() + VALOR_SEGURO_FIXO;
+    protected double calcPagamentoMensal() {
+        double taxaMensal = this.taxaJurosAnual / 12;
+        double jurosDaMensalidadeBase = this.valorImovel * taxaMensal;
+
+        if (VALOR_SEGURO_FIXO > (jurosDaMensalidadeBase / 2.0)) {
+            throw new AumentoMaiorDoQueJurosException();
+        }
+
+        double parcelaBaseComJuros = super.calcPagamentoMensal();
+        return parcelaBaseComJuros + VALOR_SEGURO_FIXO;
     }
 
     @Override
     public void exibirDados() {
         System.out.println("\n--- DETALHES DO FINANCIAMENTO DE CASA ---");
-        super.exibirDados(); // Chama o método da classe pai para exibir os detalhes comuns
+        super.exibirDados();
     }
 }

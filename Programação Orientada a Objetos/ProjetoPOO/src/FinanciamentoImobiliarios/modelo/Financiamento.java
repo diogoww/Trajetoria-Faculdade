@@ -1,5 +1,7 @@
 package FinanciamentoImobiliarios.modelo;
 
+import FinanciamentoImobiliarios.excecoes.AumentoMaiorDoQueJurosException;
+
 public class Financiamento {
 
     protected double valorImovel;
@@ -12,17 +14,17 @@ public class Financiamento {
         this.prazoFinanciamento = prazoFinanciamento;
     }
 
-    protected double calcPagamentoMensal(){
-        int meses = prazoFinanciamento*12;
-        double taxaMensal = taxaJurosAnual/12;
-        double pagamentoMensal = (valorImovel/meses)*(1+taxaMensal);
+    protected double calcPagamentoMensal() throws AumentoMaiorDoQueJurosException {
+        int meses = prazoFinanciamento * 12;
+        double taxaMensal = taxaJurosAnual / 12;
+        double pagamentoMensal = (valorImovel / meses) * (1 + taxaMensal);
         return pagamentoMensal;
     }
 
-    public double calcPagamentoTotal(){
+    public double calcPagamentoTotal() throws AumentoMaiorDoQueJurosException {
         double pagamentoMensal = calcPagamentoMensal();
-        int meses = prazoFinanciamento*12;
-        return pagamentoMensal*meses;
+        int meses = prazoFinanciamento * 12;
+        return pagamentoMensal * meses;
     }
 
     public double getValorImovel() {
@@ -37,14 +39,17 @@ public class Financiamento {
         return prazoFinanciamento;
     }
 
-    public void exibirDados(){
-        System.out.println("\n -- detalhes do financiamento --");
+    public void exibirDados() {
+        System.out.println(" -- detalhes do financiamento --");
         System.out.printf("valor do imovel: R$ %.2f%n", getValorImovel());
         System.out.printf("prazo do financiamento: %d anos%n ", getPrazoFinanciamento());
-        System.out.printf("taxas de juros anual: R$ %.2f%%%n", getTaxaJurosAnual());
-        System.out.printf("pagamento mensal estimado: R4 %.2f%n", calcPagamentoMensal());
-        System.out.printf("valor total do financiamento: R$ %.2f%n", calcPagamentoTotal());
+        System.out.printf("taxas de juros anual: %.2f%%%n", getTaxaJurosAnual() * 100);
+        try {
+            System.out.printf("pagamento mensal estimado: R$ %.2f%n", calcPagamentoMensal());
+            System.out.printf("valor total do financiamento: R$ %.2f%n", calcPagamentoTotal());
+        } catch (AumentoMaiorDoQueJurosException e) {
+            System.out.println("N/A (Erro no cálculo da parcela: " + e.getMessage() + ")");
+        }
         System.out.println("-------------");
     }
-
 }
