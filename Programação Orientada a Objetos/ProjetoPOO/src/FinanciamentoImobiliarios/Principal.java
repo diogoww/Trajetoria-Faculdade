@@ -1,25 +1,21 @@
-package FinanciamentoImobiliarios.main;
+package FinanciamentoImobiliarios;
 
 import FinanciamentoImobiliarios.modelo.Financiamento;
-import FinanciamentoImobiliarios.Casa;
-import FinanciamentoImobiliarios.Apartamento;
-import FinanciamentoImobiliarios.Terreno;
-import FinanciamentoImobiliarios.util.InterfaceUsuario;
-
 import java.util.ArrayList;
+import java.util.Scanner;
 
-public class Main {
-
-    public static void main(String [] args){
-
-        InterfaceUsuario interfaceUsuario = new InterfaceUsuario();
+public class Principal {
+    public static void main(String[] args) {
         ArrayList<Financiamento> financiamentos = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
 
         System.out.println("--- Digite os dados para um financiamento de CASA ---");
-
-        double valorImovelUser = interfaceUsuario.valorImovel();
-        int prazoAnosUser = interfaceUsuario.prazoFinanciamento();
-        double taxaJurosUser = interfaceUsuario.taxaJuros();
+        System.out.print("Valor do imóvel: R$ ");
+        double valorImovelUser = scanner.nextDouble();
+        System.out.print("Prazo do financiamento (em anos): ");
+        int prazoAnosUser = scanner.nextInt();
+        System.out.print("Taxa de juros anual (ex: 0.10 para 10%): ");
+        double taxaJurosUser = scanner.nextDouble();
 
         Casa financiamentoUsuario = new Casa(valorImovelUser, taxaJurosUser, prazoAnosUser);
         financiamentos.add(financiamentoUsuario);
@@ -37,7 +33,7 @@ public class Main {
 
         System.out.println("\n--- TODOS OS FINANCIAMENTOS ---");
         for (Financiamento f : financiamentos) {
-            f.exibirDados();
+            f.exibirDados(); // Chamada polimórfica
             somaValoresImoveis += f.getValorImovel();
             somaValoresFinanciamentos += f.calcPagamentoTotal();
         }
@@ -45,6 +41,6 @@ public class Main {
         System.out.printf("\nSoma total dos valores dos imóveis: R$ %.2f%n", somaValoresImoveis);
         System.out.printf("Soma total dos valores dos financiamentos (com juros e taxas): R$ %.2f%n", somaValoresFinanciamentos);
 
-        interfaceUsuario.fecharScanner();
+        scanner.close();
     }
 }

@@ -2,9 +2,9 @@ package FinanciamentoImobiliarios.modelo;
 
 public class Financiamento {
 
-    private double valorImovel;
-    private double taxaJurosAnual;
-    private int prazoFinanciamento;
+    protected double valorImovel;
+    protected double taxaJurosAnual;
+    protected int prazoFinanciamento;
 
     public Financiamento(double valorImovel, double taxaJurosAnual, int prazoFinanciamento) {
         this.valorImovel = valorImovel;
@@ -12,7 +12,7 @@ public class Financiamento {
         this.prazoFinanciamento = prazoFinanciamento;
     }
 
-    public double calcPagamentoMensal(){
+    protected double calcPagamentoMensal(){
         int meses = prazoFinanciamento*12;
         double taxaMensal = taxaJurosAnual/12;
         double pagamentoMensal = (valorImovel/meses)*(1+taxaMensal);
