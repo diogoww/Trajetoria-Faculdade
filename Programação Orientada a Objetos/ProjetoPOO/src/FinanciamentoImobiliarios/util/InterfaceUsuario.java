@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class InterfaceUsuario {
 
-    private Scanner scanner;
+    public Scanner scanner;
 
     public InterfaceUsuario(){
         this.scanner = new Scanner(System.in);
@@ -75,6 +75,28 @@ public class InterfaceUsuario {
             }
         } while (!entradaValida);
         return taxas;
+    }
+
+    public double areaConstruida() {
+        double area;
+        boolean entradaValida = false;
+        do {
+            System.out.print("digite a área construída (m²): ");
+            try {
+                area = scanner.nextDouble();
+                if (area > 0) {
+                    entradaValida = true;
+                    System.out.println("a área construída eh: " + area + " m²");
+                } else {
+                    System.out.println("ERRO: a área construída deve ser um valor válido (positivo).");
+                }
+            } catch (InputMismatchException ex) {
+                System.out.println("ERRO: entrada inválida. Digite um número para a área construída.");
+                scanner.next();
+                area = -1;
+            }
+        } while (!entradaValida);
+        return area;
     }
 
     public void fecharScanner(){

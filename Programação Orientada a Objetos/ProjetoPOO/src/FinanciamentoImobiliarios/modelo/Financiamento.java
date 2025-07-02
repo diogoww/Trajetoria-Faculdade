@@ -1,8 +1,10 @@
 package FinanciamentoImobiliarios.modelo;
 
 import FinanciamentoImobiliarios.excecoes.AumentoMaiorDoQueJurosException;
+import java.io.Serializable;
 
-public class Financiamento {
+public class Financiamento implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     protected double valorImovel;
     protected double taxaJurosAnual;

@@ -1,15 +1,24 @@
 package FinanciamentoImobiliarios;
 
 import FinanciamentoImobiliarios.modelo.Financiamento;
+import FinanciamentoImobiliarios.excecoes.AumentoMaiorDoQueJurosException;
+import java.io.Serializable;
 
-public class Apartamento extends Financiamento {
+public class Apartamento extends Financiamento implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private int numeroAndar;
 
-    public Apartamento(double valorImovel, double taxaJurosAnual, int prazoFinanciamento) {
+    public Apartamento(double valorImovel, double taxaJurosAnual, int prazoFinanciamento, int numeroAndar) {
         super(valorImovel, taxaJurosAnual, prazoFinanciamento);
+        this.numeroAndar = numeroAndar;
+    }
+
+    public int getNumeroAndar() {
+        return numeroAndar;
     }
 
     @Override
-    public double calcPagamentoMensal() {
+    public double calcPagamentoMensal() throws AumentoMaiorDoQueJurosException {
         double taxaMensal = this.taxaJurosAnual / 12;
         int meses = this.prazoFinanciamento * 12;
 
@@ -27,5 +36,6 @@ public class Apartamento extends Financiamento {
     public void exibirDados() {
         System.out.println("\n--- DETALHES DO FINANCIAMENTO DE APARTAMENTO ---");
         super.exibirDados();
+        System.out.printf("Número do Andar: %d%n", numeroAndar);
     }
 }
