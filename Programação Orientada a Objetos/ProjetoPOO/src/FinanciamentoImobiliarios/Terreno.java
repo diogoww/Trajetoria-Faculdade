@@ -13,7 +13,6 @@ public class Terreno extends Financiamento implements Serializable {
         this.tipoTerreno = tipoTerreno;
     }
 
-    // Novo método getter
     public String getTipoTerreno() {
         return tipoTerreno;
     }
@@ -31,6 +30,6 @@ public class Terreno extends Financiamento implements Serializable {
     public void exibirDados() {
         System.out.println("\n--- DETALHES DO FINANCIAMENTO DE TERRENO ---");
         super.exibirDados();
-        System.out.printf("Tipo de Terreno: %s%n", tipoTerreno); // Exibe o novo atributo
+        System.out.printf("Tipo de Terreno: %s%n", tipoTerreno);
     }
 }

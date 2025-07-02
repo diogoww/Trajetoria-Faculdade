@@ -11,7 +11,6 @@ public class Principal {
         ArrayList<Financiamento> financiamentos = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
 
-        // --- Coleta de dados do usuário para um financiamento de CASA ---
         System.out.println("--- Digite os dados para um financiamento de CASA ---");
         System.out.print("Valor do imóvel: R$ ");
         double valorImovelUser = scanner.nextDouble();

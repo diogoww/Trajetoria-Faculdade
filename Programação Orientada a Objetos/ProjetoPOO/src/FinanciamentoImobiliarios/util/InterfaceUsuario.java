@@ -16,7 +16,7 @@ public class InterfaceUsuario {
         boolean entradaValida = false;
         do {
             System.out.print("digite o valor do imovel: ");
-            try { // <-- Adicionando try/catch para valorImovel() também
+            try {
                 valor = scanner.nextDouble();
                 if (valor > 0){
                     entradaValida = true;
