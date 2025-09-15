@@ -1,0 +1,72 @@
+- modelo físico:
+
+CREATE TABLE cliente (
+	idCliente INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(45) NOT NULL,
+    telefone VARCHAR(20),
+    codigo VARCHAR(20),
+    endereco VARCHAR(200)
+);
+
+CREATE TABLE sanduiche (
+	idSanduiche INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(45) NOT NULL,
+    preco DECIMAL(8,2) NOT NULL
+);
+
+CREATE TABLE pedido (
+	idPedido INT AUTO_INCREMENT PRIMARY KEY,
+    idCliente INT,
+    statusLanche TINYINT NOT NULL,
+    dataEmissao DATE,
+    FOREIGN KEY (idCliente) REFERENCES cliente(idCliente)
+);
+
+CREATE TABLE pedidoSanduiche(
+	idPedido INT,
+    idSanduiche INT,
+    quantidade INT NOT NULL,
+    PRIMARY KEY (idPedido, idSanduiche),
+    FOREIGN KEY (idPedido) REFERENCES pedido(idPedido),
+    FOREIGN KEY (idSanduiche) REFERENCES sanduiche(idSanduiche)
+);
+
+CREATE TABLE entregador(
+	idEntregador INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(45) NOT NULL,
+    telefone VARCHAR(20)
+);
+
+CREATE TABLE entregaPedido(
+	idEntregador INT,
+    idPedido INT,
+    PRIMARY KEY (idEntregador, idPedido),
+    FOREIGN KEY (idEntregador) REFERENCES entregador(idEntregador),
+    FOREIGN KEY (idPedido) REFERENCES pedido(idPedido)
+);
+
+- Inserção de Dados:
+
+INSERT INTO cliente (nome, telefone, codigo, endreco)
+VALUES ('Diogo José Varaschin de Oliveira', '41922223333', 'A001', 'Avenida Sete de Setembro 123');
+
+INSERT INTO sanduiche (nome, preco)
+VALUES ('x-tudo', 32.90), ('x-frango', 25.00);
+
+INSERT INTO pedido (idCliente, statusLanche, dataEmissao)
+VALUES (1, 0, CURDATE());
+
+INSERT INTO pedidoSanduiche (idPedido, idSanduiche, quantidade)
+VALUES (1, 1, 1) (1, 2, 1);
+
+INSERT INTO entregador (nome, telefone)
+VALUES ('Joao do grau', '11933334444');
+
+INSERT INTO entregaPedido (idEntregador, idPedido)
+VALUES (1, 1)
+
+- Consulta de Dados:
+SELECT p.idPedido, c.nome AS cliente, p.dataEmissao, p.statusLanche
+FROM pedido p
+JOIN cliente c ON p.idCliente = c.idCliente
+WHERE p.statusLanche = 0;
