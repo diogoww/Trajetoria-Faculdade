@@ -1,5 +1,11 @@
-CREATE DATABASE DBLojaVinho;
+CREATE DATABASE IF NOT EXISTS DBLojaVinho;
 USE DBLojaVinho;
+
+CREATE TABLE Regiao(
+	codRegiao bigint auto_increment primary key,
+    nomeRegiao varchar(100) not null,
+    descricaoRegiao text
+);
 
 CREATE TABLE Vinicola(
 	codVinicola bigint auto_increment primary key,
@@ -7,13 +13,8 @@ CREATE TABLE Vinicola(
     descricaoVinicola text, 
     foneVinicola varchar(15),
     emailVinicola varchar(15),
+    codRegiao bigint,
     foreign key (codRegiao) references Regiao(codRegiao)
-);
-
-CREATE TABLE Regiao(
-	codRegiao bigint auto_increment primary key,
-    nomeRegiao varchar(100) not null,
-    descricaoRegiao text
 );
 
 CREATE TABLE Vinho(
@@ -22,6 +23,7 @@ CREATE TABLE Vinho(
     tipoVinho varchar(30) not null,
     anoVinho int not null,
     descricaoVinho text,
+    codVinicola bigint,
     foreign key (codVinicola) references Vinicola(codVinicola)
 );
 
@@ -33,11 +35,11 @@ INSERT INTO Regiao (nomeRegiao, descricaoRegiao) VALUES
 ('vale do sao francisco', 'regiao produtora de vinho no nordeste');
 
 INSERT INTO Vinicola (nomeVinicola, descricaoVinicola, foneVinicola, emailVinicola, codRegiao) VALUES
-('vinicola oliveira', 'vinicola grande no interior do pr', '43911112222', 'vinicola@oliveira.com', 1),
-('vinicola lionel messi', 'a vinicola do lionel messi', '41911112222', 'lionel@messi.com', 2),
-('vinicola ronaldinho gaucho', 'a vinicola do ronaldinho gaucho', '54911112222', 'ronaldinho@gaucho.com', 3),
-('vinicola ronaldo fenomeno', 'a vinicola do ronaldo fenomeno', '14911112222', 'ronaldo@fenomeno.com', 4),
-('vinicola bebeto e romário', 'a vinicola do bebeto e romario', '21911112222', 'bebeto@romario.com', 5);
+('vinicola oliveira', 'vinicola grande no interior do pr', '43911112222', 'oliveira@com', 1),
+('vinicola lionel messi', 'a vinicola do lionel messi', '41911112222', 'messi@com', 2),
+('vinicola ronaldinho gaucho', 'a vinicola do ronaldinho gaucho', '54911112222', 'ronaldinho@com', 3),
+('vinicola ronaldo fenomeno', 'a vinicola do ronaldo fenomeno', '14911112222', 'ronaldo@com', 4),
+('vinicola bebeto e romário', 'a vinicola do bebeto e romario', '21911112222', 'bbt@rmr.com', 5);
 
 INSERT INTO Vinho (nomeVinho, tipoVinho, anoVinho, descricaoVinho, codVinicola) VALUES
 ('Oliveira Reservado', 'tinto', 1999, 'o melhor vinho do parana', 1),
