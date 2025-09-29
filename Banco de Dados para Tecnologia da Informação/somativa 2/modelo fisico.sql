@@ -1,5 +1,5 @@
-CREATE DATABASE VinhosDoSul;
-USE VinhosDoSul;
+CREATE DATABASE DBLojaVinho;
+USE DBLojaVinho;
 
 CREATE TABLE Vinicola(
 	codVinicola bigint auto_increment primary key,
