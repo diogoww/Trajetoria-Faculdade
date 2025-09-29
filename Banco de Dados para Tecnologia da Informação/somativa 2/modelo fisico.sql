@@ -45,3 +45,21 @@ INSERT INTO Vinho (nomeVinho, tipoVinho, anoVinho, descricaoVinho, codVinicola) 
 ('Ronaldinho Bola de Ouro', 'Rose', 2005, 'vinho campeao da bola de ouro', 3),
 ('Ronaldo Cascao', 'seco', 2002, 'ronaldo fenomeno ganhou a copa e bebeu ele', 4),
 ('Bebeto 1994 Romario', 'tinto', 1994, 'campeao copa do vinho', 5);
+
+SELECT
+	v.nomeVinho,
+    v.anoVinho,
+    vi.nomeVinicola,
+    r.nomeRegiao
+FROM Vinho v
+JOIN Vinicola vi ON v.codVinicola = vi.codVinicola
+JOIN Regiao r ON vi.codRegiao = r.codRegiao;
+
+CREATE USER 'sommelier'@'localhost' IDENTIFIED BY 'sommelier1234';
+GRANT SELECT ON DBLojaVinho.Vinho TO 'sommelier'@'localhost';
+GRANT SELECT (codVinicola, nomeVinicola) ON DBLojaVinho.Vinicola TO 'sommelier'@'localhost';
+
+ALTER USER 'sommelier'@'localhost'
+WITH max_queries_per_hour 40;
+
+FLUSH PRIVILEGES;
