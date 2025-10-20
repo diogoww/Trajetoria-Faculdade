@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formularios</title>
+</head>
+<body>
+    <h2>Campos de entrada do tipo TEXT</h2>
+    <form>
+        <label for="pname">Primeiro nome:</label><br>
+        <input type="text" id="pnome" name="pnome" value="Diogo"><br>
+        <label for="uname">Último nome:</label><br>
+        <input type="text" id="lnome" name="unome" value="Varaschin">
+    </form> <br>
+    <b>Observe 1</b>: o formulário em si não é visível. <br>
+    <b>Observe 2</b>: a largura padrão do campo de texto = <b>20</b> caracteres. <br>
+    <br> <hr>
+    <h2>Campos de entrada do tipo RADIO BUTTON</h2>
+    <p>Escolha sua linguagem web favorita:</p>
+    <form>
+        <input type="radio" id="html" name="fav_linguagem" value="HTML">
+        <label for="html">HTML</label><br>
+        <input type="radio" id="css" name="fav_linguagem" value="CSS">
+        <label for="css">CSS</label><br>
+        <input type="radio" id="javascript" name="fav_linguagem" value="JavaScript">
+        <label for="javascript">JavaScript</label>
+    </form>
+    <br> <hr>
+    <h2>Campos de entrada do tipo CHECKBOX</h2>
+    <form>
+        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+        <label for="vehicle1"> I have a bike</label><br>
+        <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+        <label for="vehicle2"> I have a car</label><br>
+        <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+        <label for="vehicle3"> I have a boat</label>
+    </form>
+    <br> <hr>
+    <h2>Campos de entrada do tipo SUBMIT BUTTON</h2>
+    <form action="https://www.w3schools.com/action_page.php" target="_self" >
+        <label for="pname">Primeiro nome:</label><br>
+        <input type="text" id="pnome" name="pnome" value="Maria"><br>
+        <label for="uname">Último nome:</label><br>
+        <input type="text" id="lnome" name="unome" value="Flores"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <p>Ao clicar no botão "Submit", os dados do formulário serão enviados para uma página do W3Schools: "action_page.php".</p>
+</body>
+</html>

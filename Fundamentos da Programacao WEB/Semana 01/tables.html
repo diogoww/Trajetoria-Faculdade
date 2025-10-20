@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tabelas</title>
+    <style>
+    table,
+    th,
+    td {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+</table>
+<h2>Tabela Exemplo 1</h2>
+<table width="60%"> <!-- Atributo width (largura) = % da tela do navegador. -->
+  <tr>
+    <th>Itens/Mês</th>
+    <th>Janeiro</th>
+    <th>Fevereiro</th>
+  </tr>
+  <tr>
+    <th>Usuarios</th>
+    <td>80</td>
+    <td>93</td>
+  </tr>
+  <tr>
+    <th>Linhas</th>
+    <td>3</td>
+    <td>9</td>
+  </tr>
+</table>
+<h2>Tabela Exemplo 2: atributos colspan e rowspan</h2>
+<table>
+  <tr>
+    <th rowspan="3">Meses</th> <!-- Faz a união de 3 LINHAS (row)  --> 
+    <th>Mês</th>
+    <th>Economia</th>
+  </tr>
+  <tr>
+    <td>Janeiro</td>
+    <td>R$ 100,00</td>
+  </tr>
+  <tr>
+    <td>Fevereiro</td>
+    <td>R$ 80,0</td>
+  </tr>
+  <tr>
+    <td>Total</td>
+    <td colspan="2"> R$ 180,00</td> <!-- Faz a união de 2 COLUNAS (col) -->
+  </tr>
+</table>
+</html>
