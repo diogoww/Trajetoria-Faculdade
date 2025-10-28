@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descubra o número!</title>
+    <style>
+        html{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        body{
+            width: 70%;
+            max-width: 900px;
+            min-width: 500px;
+            margin: 0 40px;
+            background-color: bisque;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tente adivinhar o número com a menor quantidade de tentativas possíveis!</h1>
+
+    <p>Selecionamos um número aleátorio entre <b>1</b> e <b>100</b></p>
+    <p>Veja se consegue advinhar em <b>10</b> chances ou menos!</p>
+    <p>Nós lhe diremos se o seu palpite está <b>perto</b> ou <b>não</b>!</p>
+
+    <div class="form">
+        <label for="campoPalpite">Digite o seu palpite: </label>
+        <input type="text" id="campoPalpite" class="campoPalpite">
+        <input type="submit" value="Enviar palpite." class="envioPalpite" onclick="conferirPalpite();">
+    </div>
+
+    <div class="cjtoResultados">
+        <p class="palpites"></p>
+        <p class="ultimoResultado"></p>
+        <p class="pertoOuNao"></p>
+    </div>
+
+    <script>
+        var numAleatorio = Math.floor(Math.random() * 100) + 1;
+        
+        var palpites = document.querySelector('.palpites');
+        var ultimoResultado = document.querySelector('.ultimoResultado');
+        var pertoOuNao = document.querySelector('.pertoOuNao');
+
+        var envioPalpite = document.querySelector('.envioPalpite');
+        var campoPalpite = document.querySelector('.campoPalpite');
+        var contagem = 1;
+        var botaoReinicio;
+
+        function conferirPalpite(){
+            var palpiteUsuario = Number(campoPalpite.value);
+            if (contagem === 1){
+                palpites.textContent = 'Palpites anteriores: ';
+            }
+            palpites.textContent += palpiteUsuario + ' '; // n° de palpites informados
+
+            if (palpiteUsuario === numAleatorio){
+                ultimoResultado.textContent = 'Parabens! Voce acertou! :). O número certo eh ' + palpiteUsuario + '!';
+                ultimoResultado.style.backgroundColor = 'lightgreen';
+                pertoOuNao.textContent = '';
+                configFimDeJogo();
+            } else if (contagem === 10){
+                ultimoResultado.textContent = 'Esgotou as tentativas, fim de jogo! :(';
+                pertoOuNao.textContent = '';
+                configFimDeJogo();
+            } else {
+                ultimoResultado.textContent = 'Errado!';
+                ultimoResultado.style.backgroundColor = 'lightcoral';
+                if (palpiteUsuario < numAleatorio) {
+                    pertoOuNao.textContent = 'Seu palpite está BAIXO!';
+                } else if (palpiteUsuario > numAleatorio) {
+                    pertoOuNao.textContent = 'Seu palpite está ALTO!';
+                } 
+            }
+
+            contagem++;
+            campoPalpite.value = '';
+            campoPalpite.focus();
+        }
+
+        function reiniciarGame(){
+            contagem = 1;
+
+            var reiniciarParas = document.querySelectorAll('cjtoResultados p');
+            for (var i = 0; i < reiniciarParas; i++){
+                reiniciarParas[i].textContent = '';
+            }
+            botaoReinicio.parentNode.removeChild(botaoReinicio);
+            campoPalpite.disbled = false;
+            envioPalpite.disabled = false;
+            campoPalpite.value = '';
+            campoPalpite.focus();
+            ultimoResultado.style.backgroundColor = 'bisque';
+            numAleatorio = Math.floor(Math.random()*100) + 1;
+        }
+
+        function configFimDeJogo() {
+            campoPalpite.disabled = true;  // desabilita campo de INPUT
+            envioPalpite.disabled = true;  // desabilita campo de INPUT
+            botaoReinicio = document.createElement('button');
+            botaoReinicio.textContent = 'Iniciar novo jogo';
+            document.body.appendChild(botaoReinicio);
+            botaoReinicio.addEventListener('click', reiniciarJogo);
+        }
+    </script>
+
+</body>
+</html>
