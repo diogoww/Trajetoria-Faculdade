@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <title>Teste de Comandos JS</title>
+    <style>
+    html {
+        font-family: 'Lucida Sans';
+    }
+
+    body {
+        width: 70%;
+        max-width: 900px;
+        min-width: 500px;
+        margin: 0 40px;
+    }
+
+    button {
+        width: 250px;
+    }
+    </style>
+</head>
+
+<body>
+    <h4>JS pode alterar os <b>atributos de elementos</b> HTML</h4>
+    <p>Alterando o valor do atributo src (source) de uma imagem:</p>
+    <img id="img" src="img/lamp_Off.png" style="width:100px"><br> <!-- Imagem original -->
+    <button id="acender">Acende a Lâmpada</button>
+    <button id="apagar">Apaga a Lâmpada</button>
+    <br>
+    <script>
+    // Espera até que o DOM esteja totalmente carregado
+    document.addEventListener('DOMContentLoaded', function() {
+        // Adiciona um event listener ao botão "Acender"
+        document.getElementById('acender').addEventListener('click', function() {
+            // Muda o atributo 'src' da imagem para acender a lâmpada
+            document.getElementById('img').src = 'img/lamp_On.png';
+        });
+        // Adiciona um event listener ao botão "Apagar"
+        document.getElementById('apagar').addEventListener('click', function() {
+            // Muda o atributo 'src' da imagem para apagar a lâmpada
+            document.getElementById('img').src = 'img/lamp_Off.png';
+        });
+    });
+    </script>
+</body>
+
+</html>
