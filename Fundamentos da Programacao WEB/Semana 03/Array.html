@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>JavaScript Arrays</h2>
+<p id="texto1"></p>
+<p id="texto2"></p>
+<p id="texto3"></p>
+<script>
+var frutas = ['Abacate', 'Uva', 'Limão'];
+var minhaFruta = frutas[1];   // Uva
+var fTam = frutas.length;     // Informa o total de elementos no array
+document.getElementById("texto1").innerHTML = 'Minha fruta = ' + minhaFruta;
+document.getElementById("texto2").innerHTML = 'Total de frutas = ' + fTam;
+
+var text = "<ul>";
+for (let i = 0; i < fTam; i++) {          // For que percorre o array e
+  text += "<li>" + frutas[i] + "</li>";   // monta o HTML de lista
+}
+text += "</ul>";                                    // finaliza o HTML de lista
+document.getElementById("texto3").innerHTML = text; // Mostra lista de frutas
+</script>
+</body>
+</html>
