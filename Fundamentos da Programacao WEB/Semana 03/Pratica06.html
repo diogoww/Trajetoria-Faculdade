@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <title>Teste de Comandos JS</title>
+    <style>
+    html {
+        font-family: 'Lucida Sans';
+    }
+
+    body {
+        width: 70%;
+        max-width: 900px;
+        min-width: 500px;
+        margin: 0 40px;
+    }
+
+    button {
+        width: 250px;
+    }
+    </style>
+</head>
+
+<body>
+    <h4>JS pode ocultar ou mostrar elementos HTML</h4>
+    <p id="meuTexto2">Um outro texto original.</p>
+    <button type="button" id="ocultarTexto">Clique para ocultar o texto!</button>
+    <button type="button" id="mostrarTexto">Clique para mostrar o texto!</button><br><br><br>
+    <script>
+    // Espera até que o DOM esteja totalmente carregado
+    document.addEventListener('DOMContentLoaded', function() {
+        // Adiciona um event listener ao botão "Clique para ocultar o texto!"
+        document.getElementById('ocultarTexto').addEventListener('click', function() {
+            // Oculta o elemento <p> com id "meuTexto2"
+            document.getElementById('meuTexto2').style.display = "none";
+        });
+        // Adiciona um event listener ao botão "Clique para mostrar o texto!"
+        document.getElementById('mostrarTexto').addEventListener('click', function() {
+            // Mostra o elemento <p> com id "meuTexto2"
+            document.getElementById('meuTexto2').style.display = "block";
+        });
+    });
+    </script>
+</body>
+
+</html>
