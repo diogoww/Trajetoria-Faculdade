@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <title>Teste de Comandos JS</title>
+    <style>
+    html {
+        font-family: 'Lucida Sans';
+    }
+
+    body {
+        width: 70%;
+        max-width: 900px;
+        min-width: 500px;
+        margin: 0 40px;
+    }
+
+    button {
+        width: 250px;
+    }
+    </style>
+</head>
+
+<body>
+    <h4>JS pode alterar o estilo de elementos HTML</h4>
+    <p id="meuTexto1">Outro texto original.</p>
+    <button type="button" id="mudarFonte">Clique para mudar o tamanho da fonte!</button>
+    <button type="button" id="voltarFonte">Clique para voltar à fonte original!</button><br>
+    <script>
+    // Espera até que o DOM esteja totalmente carregado
+    document.addEventListener('DOMContentLoaded', function() {
+        // Adiciona um event listener ao botão "Clique para mudar o tamanho da fonte!"
+        document.getElementById('mudarFonte').addEventListener('click', function() {
+            // Muda o tamanho da fonte do elemento <p> com id "meuTexto1"
+            document.getElementById('meuTexto1').style.fontSize = "20px";
+        });
+        // Adiciona um event listener ao botão "Clique para voltar à fonte original!"
+        document.getElementById('voltarFonte').addEventListener('click', function() {
+            // Volta o tamanho da fonte do elemento <p> com id "meuTexto1" para o original
+            document.getElementById('meuTexto1').style.fontSize = "medium";
+        });
+    });
+    </script>
+</body>
+
+</html>
