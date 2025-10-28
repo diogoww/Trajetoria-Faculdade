@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Teste de Comandos JS</title>
+    <style>
+        html {
+            font-family: 'Lucida Sans';
+        }
+
+        body {
+            width: 70%;
+            max-width: 900px;
+            min-width: 500px;
+            margin: 0 40px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Comandos JS</h2>
+    <h4>Laço de repetição</h4>
+    <div class="textos">
+        <p class="texto1"></p>
+        <p class="texto2"></p>
+        <p class="texto3"></p>
+    </div>
+    <script>
+        var textos = document.querySelectorAll('.textos p');
+        for (let i = 0; i < textos.length; i++) {
+            textos[i].textContent = i + 1;
+        }
+    </script>
+</body>
+</html>
