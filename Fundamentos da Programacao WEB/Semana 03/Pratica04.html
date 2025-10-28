@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <title>Teste de Comandos JS</title>
+    <style>
+    html {
+        font-family: 'Lucida Sans';
+    }
+
+    body {
+        width: 70%;
+        max-width: 900px;
+        min-width: 500px;
+        margin: 0 40px;
+    }
+
+    button {
+        width: 250px;
+    }
+    </style>
+</head>
+
+<body>
+    <h4>JS pode alterar o conteúdo interno de elementos HTML</h4>
+    <p id="meuTexto">Este é o texto original.</p> <!-- Conteúdo interno original -->
+    <button type="button" id="mudarTexto">Clique para mudar o texto!</button>
+    <button type="button" id="voltarTexto">Clique para voltar ao texto original!</button><br>
+    <script>
+    // Espera até que o DOM esteja totalmente carregado
+    document.addEventListener('DOMContentLoaded', function() {
+        // Adiciona um event listener ao botão "Clique para mudar o texto!"
+        document.getElementById('mudarTexto').addEventListener('click', function() {
+            // Muda o conteúdo interno do elemento <p> com id "meuTexto"
+            document.getElementById('meuTexto').innerHTML = "Olá, eu sou o JavaScript!";
+        });
+        // Adiciona um event listener ao botão "Clique para voltar ao texto original!"
+        document.getElementById('voltarTexto').addEventListener('click', function() {
+            // Volta o conteúdo interno do elemento <p> com id "meuTexto" para o original
+            document.getElementById('meuTexto').innerHTML = "Este é o texto original.";
+        });
+    });
+    </script>
+</body>
+
+</html>
