@@ -31,7 +31,7 @@ public class Livro {
     }
 
     @Override
-    public boolean equals(Objects objects){
+    public boolean equals(Object objects){
         if (this == objects) return true;
         if (objects == null || getClass() != objects.getClass()) return false;
 
