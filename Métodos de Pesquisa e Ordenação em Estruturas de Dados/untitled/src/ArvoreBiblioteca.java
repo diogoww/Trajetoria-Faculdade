@@ -1,3 +1,7 @@
+// mome: Diogo José Varaschin de Oliveira
+// curso: Análise e Desenvolvimento de Sistemas - PUCPR
+// matéria: Métodos de Pesquisa e Ordenação em Estruturas de Dados
+
 public class ArvoreBiblioteca {
 
     private NoLivro raiz;
