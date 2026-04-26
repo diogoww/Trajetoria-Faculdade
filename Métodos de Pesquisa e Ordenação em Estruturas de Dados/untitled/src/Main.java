@@ -2,9 +2,7 @@
 // curso: Análise e Desenvolvimento de Sistemas - PUCPR
 // matéria: Métodos de Pesquisa e Ordenação em Estruturas de Dados
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
 
@@ -68,9 +66,41 @@ public class Main {
         recomendacoes.get(l10).add(l8);
         recomendacoes.get(l10).add(l9);
 
-        System.out.println("\n --- recomendações para Noites Brancas de Fiódor Dostoiévski ---");
-        for (Livro livro : recomendacoes.get(l3)){
-            System.out.println(livro);
+        System.out.println("\n--- Distâncias a partir de Noites Brancas ---");
+
+        Map<Livro, Integer> distancias = dijkstraSimples(recomendacoes, l3);
+
+        for (Map.Entry<Livro, Integer> entry : distancias.entrySet()) {
+            System.out.println(
+                    entry.getKey().getTitulo() +
+                            " -> distância: " +
+                            entry.getValue()
+            );
         }
+    }
+
+    public static Map<Livro, Integer> dijkstraSimples(
+            HashMap<Livro, Set<Livro>> grafo,
+            Livro origem) {
+
+        Map<Livro, Integer> distancias = new HashMap<>();
+        Queue<Livro> fila = new LinkedList<>();
+
+        distancias.put(origem, 0);
+        fila.add(origem);
+
+        while (!fila.isEmpty()) {
+            Livro atual = fila.poll();
+            int distanciaAtual = distancias.get(atual);
+
+            for (Livro vizinho : grafo.getOrDefault(atual, new HashSet<>())) {
+                if (!distancias.containsKey(vizinho)) {
+                    distancias.put(vizinho, distanciaAtual + 1);
+                    fila.add(vizinho);
+                }
+            }
+        }
+
+        return distancias;
     }
 }
